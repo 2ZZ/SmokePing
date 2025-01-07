@@ -29,7 +29,7 @@ bin/cpanm:
 $(CPANSNAPV): ../cpanfile
 	$(AM_V_at)echo "** Installing Dependencies using Carton install"
 	$(AM_V_at)test -f $(CPANSNAPV) && cp $(CPANSNAPV) ../cpanfile.snapshot || true
-	test -x carton/bin/carton || $(PERL_ENV) $(PERL) bin/cpanm -q --notest --local-lib-contained $(THIRDPARTY_DIR)/carton Carton
+	test -x carton/bin/carton || $(PERL_ENV) $(PERL) bin/cpanm -q -M https://www.cpan.org --notest --local-lib-contained $(THIRDPARTY_DIR)/carton Carton
 	$(PERL_ENV) PERL5LIB=$(THIRDPARTY_DIR)/carton/lib/perl5 $(PERL) $(THIRDPARTY_DIR)/carton/bin/carton install
 	$(AM_V_at)mv ../cpanfile.snapshot $(CPANSNAPV)
 	$(AM_V_at)touch touch
